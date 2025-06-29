@@ -3,6 +3,7 @@
 local cursor = require "in.cursor"
 
 go.property("action_id", hash("touch"))
+go.property("action_id_mobile", hash("touch_multi"))
 go.property("drag", true)
 go.property("drag_threshold", 20)
 go.property("event_only_drag", false)
@@ -29,7 +30,7 @@ local function handle_input(self, action_id, action)
 	if not action_id then
 		go.set_position(action_pos)
 		-- click or finger touching screen
-	elseif action_id == self.action_id then
+	elseif action_id == self.is_mobile and self.action_id_mobile or self.action_id then
 		if action.pressed then
 			self.touch = true
 			self.pressed = true
